@@ -13,8 +13,6 @@ import sys
 
 from urllib import urlencode
 
-from twisted.internet.protocol import Protocol, ClientFactory
-
 from colorama import Fore, Style
 from colorama import init
 init(autoreset=True)
@@ -162,7 +160,6 @@ def thesaurus():
         """Errback for unsuccessfull word processing"""
         
         print_err('There was an error while processing answer')
-        print err
     
     for word in words:
         d = get_answer(word, options.lang)
