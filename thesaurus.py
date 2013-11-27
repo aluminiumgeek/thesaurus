@@ -53,7 +53,7 @@ def parse_args():
     Available 'lang' options:
     \t{0}
     Default lang: en
-    """.format(', '.join(languages.keys()))
+    """.format(', '.join(languages))
 
     parser = optparse.OptionParser(usage, version='%prog 1.0')
     
@@ -71,6 +71,9 @@ def parse_args():
         parser.error("Incorrect language value.\nAvailable languages: {0}".format(
             ', '.join(languages)
         ))
+        
+    if not words:
+        parser.error('No words to process')
     
     return options, words
 
@@ -86,10 +89,7 @@ def generate_lang(lang):
     @rtype: string
     """
     
-    if lang in languages:
-        return '{0}_{1}'.format(lang, languages[lang])
-    else:
-        raise NoSuchLanguage
+    return '{0}_{1}'.format(lang, languages[lang])
       
 def print_err(msg):
     """Print colored error message to stderr"""
