@@ -3,7 +3,7 @@
 #
 # thesaurus.py (c) Mikhail Mezyakov <mihail265@gmail.com>
 #
-# Pretty and really fast asynchronous client for Thesaurus.com written with Twisted
+# Pretty and really fast asynchronous client for Thesaurus service written with Twisted
 #
 # pip install twisted
 # pip install colorama
@@ -43,7 +43,7 @@ languages = {
 def parse_args():
     usage = """Usage: %prog [-l <lang>|--lang=<lang>] <word1> [word2] [word3] ...
 
-    Thesaurus.com multilingual client.
+    Thesaurus multilingual client.
     Example:
 
       python %prog sun morning show word ...
@@ -120,7 +120,7 @@ def get_answer(word, lang=None):
     return getPage(url)
 
 def thesaurus():
-    """Retrieve and print word's info from Thesaurus.com"""
+    """Retrieve and print word's info from Thesaurus service"""
     
     options, words = parse_args()
     
@@ -137,12 +137,12 @@ def thesaurus():
         synonyms = word.get_synonyms()
         
         print u'{green}{word}{normal} {cyan}has {num} synonyms:{normal}\n{synonyms}'.format(
-            word=unicode(str(word), 'utf-8'),
-            num=len(synonyms),
-            synonyms=u', '.join(synonyms),
-            green=Fore.GREEN+Style.BRIGHT,
-            cyan=Fore.CYAN,
-            normal=Style.RESET_ALL
+            word = unicode(str(word), 'utf-8'),
+            num = len(synonyms),
+            synonyms = u', '.join(synonyms),
+            green = Fore.GREEN+Style.BRIGHT,
+            cyan = Fore.CYAN,
+            normal = Style.RESET_ALL
         )
         
     def answer_lost(err):
@@ -170,7 +170,6 @@ def thesaurus():
         d.addCallbacks(processing_finished, processing_error)
 
     reactor.run()
-
 
 if __name__ == '__main__':
     thesaurus()
